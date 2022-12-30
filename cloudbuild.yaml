@@ -16,7 +16,7 @@ steps:
   volumes:
   - name: 'vol1'
     path: '/persistent_volume'
-  args: ['run', '-v', 'vol1:/home/app', '--rm', 'gradle:latest', '/bin/sh', '-c', 'cd /home/app && ./gradlew clean assembleDebug']
+  args: ['run', '-v', 'vol1:/home/app', '--rm', 'gradle:7.4.2-jdk17-alpine', '/bin/sh', '-c', 'cd /home/app && ./gradlew clean assembleDebug']
 
 # Push the APK Output from vol1 to your GCS Bucket with Short Commit SHA.
 - name: 'gcr.io/cloud-builders/gsutil'
