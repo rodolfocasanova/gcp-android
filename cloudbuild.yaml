@@ -1,5 +1,12 @@
 steps:
-  # This step show the version of Gradle
+
+# Set a persistent volume according to https://cloud.google.com/cloud-build/docs/build-config (search for volumes)
+- name: 'ubuntu'
+  volumes:
+  - name: 'vol1'
+    path: '/persistent_volume'
+  args: ['cp', '-a', '.', '/persistent_volume']
+# This step show the version of Gradle
 - name: gradle:7.4.2-jdk17-alpine
   entrypoint: gradle
   args: ['--version']
@@ -11,13 +18,6 @@ steps:
 - name: 'Test'
   entrypoint: gradle
   args: [ 'test' ]
-# Set a persistent volume according to https://cloud.google.com/cloud-build/docs/build-config (search for volumes)
-- name: 'ubuntu'
-  volumes:
-  - name: 'vol1'
-    path: '/persistent_volume'
-  args: ['cp', '-a', '.', '/persistent_volume']
-  
 # Build APK with Gradle Image from mounted /persistent_volume using name: vol1
 - name: 'gcr.io/cloud-builders/docker'
   volumes:
