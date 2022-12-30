@@ -10,14 +10,7 @@ steps:
 - name: gradle:7.4.2-jdk17-alpine
   entrypoint: gradle
   args: ['--version']
-# This step build the gradle application
-- name: 'Build'
-  entrypoint: gradle
-  args: [ 'build' ]
-# This step run test
-- name: 'Test'
-  entrypoint: gradle
-  args: [ 'test' ]
+
 # Build APK with Gradle Image from mounted /persistent_volume using name: vol1
 - name: 'gcr.io/cloud-builders/docker'
   volumes:
