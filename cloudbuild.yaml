@@ -3,7 +3,14 @@ steps:
 - name: gradle:7.4.2-jdk17-alpine
   entrypoint: gradle
   args: ['--version']
-
+# This step build the gradle application
+- name: 'Build'
+  entrypoint: gradle
+  args: [ 'build' ]
+# This step run test
+- name: 'Test'
+  entrypoint: gradle
+  args: [ 'test' ]
 # Set a persistent volume according to https://cloud.google.com/cloud-build/docs/build-config (search for volumes)
 - name: 'ubuntu'
   volumes:
