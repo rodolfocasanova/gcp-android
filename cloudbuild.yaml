@@ -1,4 +1,9 @@
 steps:
+  # This step show the version of Gradle
+  - name: gradle:7.4.2-jdk17-alpine
+    entrypoint: gradle
+    args: ['--version']
+
 # Set a persistent volume according to https://cloud.google.com/cloud-build/docs/build-config (search for volumes)
 - name: 'ubuntu'
   volumes:
